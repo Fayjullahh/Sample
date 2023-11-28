@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* display: flex; */
+        }
+
+        /* Dark Mode Styles */
+        body.dark {
+            background-color: #1a202c;
+            color: #d8dee9;
+        }
+
+        body.dark nav {
+            background-color: #2d3748;
+            color: #d8dee9;
+        }
+
+        body.dark a {
+            color: #a0aec0;
+        }
+
+        body.dark .bg-gray-800 {
+            background-color: #2d3748;
+        }
+
+        body.dark .text-white {
+            color: #fff;
+        }
+
+        body.dark .bg-white {
+            background-color: #fff;
+            color: #1a202c;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #2d3748;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            margin-left: 3.5rem;
+        }
+
+        .navbar-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .navbar-logo h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .navbar-username {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-username img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .dark-mode-toggle {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Container Styles */
+        .container {
+            display: flex;
+            /* flex-direction: column;  */
+            height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 200px;
+            background-color: #2d3748;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar a {
+            color: #a0aec0;
+            text-decoration: none;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #d8dee9;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            /* flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: space-between; */
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            /* border: 2px solid green; */
+            width: 100%;
+            
+        }
+
+        .dashboard-box {
+            /* width: 30%;
+            margin-bottom: 20px;
+            background-color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            height: 10rem; */
+            width: 95%;
+            /* height: 100%; */
+            /* border: 1px solid blue; */
+            height: 250px;
+            
+            
+        }
+
+        .dashboard-box:nth-child(1) {
+            /* width: 50%;
+            height: 100%;  */
+        } 
+        .dashboard-box-newsfeed{
+            width: 70%;
+            height: 100%;
+            /* border: 2px solid red; */
+            overflow:scroll;
+        }
+        .other-box{
+            /* width: 100%; */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap:2rem;
+            overflow:scroll;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200">
+
+    <!-- Navbar -->
+    <nav>
+        <div class="navbar-logo">
+            <h1>seeKers</h1>
+        </div>
+        <div class="navbar-username">
+            <img src="emon.jpg" alt="User Profile Image">
+            <span style="color:white">Fayjullah Haque</span>
+        </div>
+        <div class="navbar-notification">
+            <img src="icons8-notification-50.png" alt="Notification Icon" width="30px" height="30px">
+            <span style="color:white">1</span>
+        </div>
+        <div class="dark-mode-toggle" id="darkModeToggle">🌙</div>
+    </nav>
+
+    <!-- Container for Sidebar and Main Content -->
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="#" class="active">Dashboard</a>
+            <a href="#">Messages</a>
+            <a href="#">Job Applied</a>
+            <a href="#">CV Builder</a>
+            <a href="#">Settings</a>
+            <a href="#">Email</a>
+            <a href="#">Calendar</a>
+            <a href="#">Job Search</a>
+            <a href="#">Logout</a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-box-newsfeed">
+                <h2 class="text-xl font-semibold mb-2">Newsfeed</h2>
+                <p id="newsfeed">No updates yet</p>
+                
+            </div>
+
+            <div class="other-box">
+                <div class="dashboard-box">
+                    <h2 class="text-xl font-semibold mb-2">Job Applications</h2>
+                    <p id="jobApplications">0</p>
+                </div>
+    
+                <div class="dashboard-box">
+                    <h2 class="text-xl font-semibold mb-2">Interested Companies</h2>
+                    <p id="interestedCompanies">0</p>
+                </div>
+    
+                <div class="dashboard-box">
+                    <h2 class="text-xl font-semibold mb-2">Interested Industries</h2>
+                    <p id="interestedIndustries">0</p>
+                </div>
+    
+                <div class="dashboard-box">
+                    <h2 class="text-xl font-semibold mb-2">Followers</h2>
+                    <p id="followers">0</p>
+                </div>
+    
+                <div class="dashboard-box">
+                    <h2 class="text-xl font-semibold mb-2">Following</h2>
+                    <p id="following">0</p>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+        });
+    </script>
+
+</body>
+
+</html>
